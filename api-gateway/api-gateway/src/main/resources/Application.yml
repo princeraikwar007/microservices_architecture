@@ -1,0 +1,36 @@
+Server:
+  Port: 9067
+
+spring:
+  application:
+    name: API-GATEWAY
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+
+      routes:
+        - id: USER-SERVICE
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/users/**
+        - id: DEPARTMENT-SERVICE
+          uri: lb://DEPARTMENT-SERVICE
+          predicates:
+            - Path=/departments/**
+        - id: ribbon-server
+          uri: lb://ribbon-server
+          predicates:
+            - Path=/**
+
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      #defaultZone: http://localhost:8787/eureka
+#      defaultZone: http://localhost:8761/eureka/
+#      instance:
+#        hostname: localhost
