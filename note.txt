@@ -19,6 +19,5 @@ eg.java -jar zipkin.jar
 7.then at last start api-gateway
 
  
-
-
+thank you
 
